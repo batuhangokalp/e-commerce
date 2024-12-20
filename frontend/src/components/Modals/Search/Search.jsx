@@ -1,4 +1,6 @@
 import "./Search.css";
+import Proptypes from "prop-types";
+
 const Search = ({ isSearchShow, setIsSearchShow }) => {
   return (
     <div className={`modal-search ${isSearchShow ? "show" : ""} `}>
@@ -50,7 +52,17 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
           onClick={() => setIsSearchShow(false)}
         ></i>
       </div>
+      <div
+        className="modal-overlay"
+        onClick={() => setIsSearchShow(false)}
+      ></div>
     </div>
   );
 };
 export default Search;
+
+
+Search.propTypes = {
+    isSearchShow: Proptypes.bool,
+    setIsSearchShow: Proptypes.func,
+};

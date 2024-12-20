@@ -16,7 +16,7 @@
   visibility: visible;
   opacity: 1;
 }
-.modal-search::after {
+.modal-overlay {
   content: "";
   width: 100%;
   height: 100%;
