@@ -6,20 +6,20 @@ import React from "react";
 // import CartPage from "./pages/CartPage";
 // import BlogDetailsPage from "./pages/BlogDetailsPage";
 //import BlogPage from "./pages/BlogPage";
-// import ProductDetailsPage from "./pages/ProductDetailsPage";
+ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import "./App.css";
 
 function App() {
   return (
     <React.Fragment>
-      <HomePage />
+      {/* <HomePage /> */}
       {/* <ShopPage /> */}
       {/* <ContactPage /> */}
       {/* <AuthPage /> */}
       {/* <CartPage /> */}
       {/* <BlogPage /> */}
       {/* <BlogDetailsPage /> */}
-      {/* <ProductDetailsPage /> */}
+      <ProductDetailsPage />
     </React.Fragment>
   );
 }

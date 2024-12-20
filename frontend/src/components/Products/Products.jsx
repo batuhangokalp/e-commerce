@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ProductItem from "./ProductItem";
-import ProductsData from "../../data.json";
+import productsData from "../../data.json";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import "./Products.css";
 const Products = () => {
-  const [products] = useState(ProductsData);
+  const [products] = useState(productsData);
 
   const NextBtn = ({ onClick }) => (
     <button className="glide__arrow glide__arrow--right" onClick={onClick}>
