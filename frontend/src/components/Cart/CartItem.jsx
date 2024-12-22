@@ -1,16 +1,28 @@
-const CartItem = () => {
+import Proptypes from "prop-types";
+
+const CartItem = ({ cartItem, removeFromCart }) => {
   return (
     <tr className="cart-item">
       <td></td>
       <td className="cart-image">
-        <img src="img/products/product1/1.png" alt="" />
-        <i className="bi bi-x delete-cart" data-id="1"></i>
+        <img src={cartItem?.img?.singleImage} alt="" />
+        <i
+          className="bi bi-x delete-cart"
+          onClick={() => removeFromCart(cartItem.id)}
+        ></i>
       </td>
-      <td>Analogue Resin Strap</td>
-      <td>$108.00</td>
-      <td className="product-quantity">1</td>
-      <td className="product-subtotal">$108.00</td>
+      <td>{cartItem?.name}</td>
+      <td>{cartItem?.price?.newPrice.toFixed(2)}</td>
+      <td className="product-quantity">{cartItem?.quantity}</td>
+      <td className="product-subtotal">
+        ${(cartItem?.quantity * cartItem.price.newPrice).toFixed(2)}
+      </td>
     </tr>
   );
 };
 export default CartItem;
+
+CartItem.propTypes = {
+  cartItem: Proptypes.object,
+  removeFromCart: Proptypes.func,
+};
