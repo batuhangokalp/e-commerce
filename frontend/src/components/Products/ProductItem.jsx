@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import Proptypes from "prop-types";
 import { CartContext } from "../../context/CartProvider";
 
@@ -58,9 +59,9 @@ const ProductItem = ({ product }) => {
           <button>
             <i className="bi bi-heart-fill"></i>
           </button>
-          <a href="#" className="product-link">
+          <Link to={`product/${product.id}`} className="product-link">
             <i className="bi bi-eye-fill"></i>
-          </a>
+          </Link>
           <a href="#">
             <i className="bi bi-share-fill"></i>
           </a>
