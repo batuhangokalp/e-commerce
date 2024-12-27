@@ -84,7 +84,7 @@ router.delete("/:categoryId", async (req, res) => {
 
     await Category.findByIdAndDelete(categoryId)
 
-    res.status(200).json({message: "Deleting is success!"});
+    res.status(200).json({message: "Deleting is successful!"});
   } catch (error) {
     console.log("Getting category error:", error);
     res.status(500).json({ error: "Server Error!" });
