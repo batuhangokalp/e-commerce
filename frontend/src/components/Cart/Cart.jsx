@@ -1,8 +1,9 @@
-import "./Cart.css";
 import CartCoupon from "./CartCoupon";
 import CartProgress from "./CartProgress";
 import CartTable from "./CartTable";
 import CartTotals from "./CartTotals";
+import "./Cart.css";
+
 const Cart = () => {
   return (
     <section className="cart-page">

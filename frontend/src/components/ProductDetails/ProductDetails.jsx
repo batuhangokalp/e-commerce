@@ -1,9 +1,11 @@
+import PropTypes from "prop-types";
 import Breadcrumb from "./Breadcrumb/breadcrumb";
 import Gallery from "./Gallery/Gallery";
 import Info from "./Info/Info";
-import "./ProductDetails.css";
 import Tabs from "./Tabs/Tabs";
-const ProductDetails = () => {
+import "./ProductDetails.css";
+
+const ProductDetails = ({ productData }) => {
   return (
     <section className="single-product">
       <div className="container">
@@ -11,14 +13,18 @@ const ProductDetails = () => {
           <Breadcrumb />
           <div className="single-content">
             <main className="site-main">
-              <Gallery />
-              <Info />
+              <Gallery productData={productData} />
+              <Info productData={productData} />
             </main>
           </div>
-          <Tabs />
+          <Tabs productData={productData} />
         </div>
       </div>
     </section>
   );
 };
 export default ProductDetails;
+
+ProductDetails.propTypes = {
+  productData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+};

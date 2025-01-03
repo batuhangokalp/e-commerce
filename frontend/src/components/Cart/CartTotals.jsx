@@ -7,7 +7,7 @@ const CartTotals = () => {
   const cargoFee = 15;
 
   const cartItemsTotal = cartItems.map((cartItem) => {
-    const itemTotal = cartItem.price.newPrice * cartItem.quantity;
+    const itemTotal = cartItem?.price * cartItem.quantity;
 
     return itemTotal;
   });

@@ -7,14 +7,22 @@ import "./ProductItem.css";
 const ProductItem = ({ product }) => {
   const { cartItems, addToCart } = useContext(CartContext);
 
-  const filteredCart = cartItems.find((cartItem) => cartItem.id === product.id);
+  const filteredCart = cartItems.find(
+    (cartItem) => cartItem._id === product._id
+  );
+
+  const originalPrice = product?.price?.currentPrice;
+  const discountPercentage = product?.price?.discountPrice;
+
+  const discountedPrice =
+    originalPrice - (originalPrice * discountPercentage) / 100;
 
   return (
     <div className="product-item glide__slide glide__slide--active">
       <div className="product-image">
         <a href="#">
-          <img src={product?.img?.singleImage} alt="" className="img1" />
-          <img src={product?.img?.thumbs[1]} alt="" className="img2" />
+          <img src={product?.images?.[0]} alt="" className="img1" />
+          <img src={product?.images?.[1]} alt="" className="img2" />
         </a>
       </div>
       <div className="product-info">
@@ -40,26 +48,27 @@ const ProductItem = ({ product }) => {
           </li>
         </ul>
         <div className="product-prices">
-          <strong className="new-price">
-            $ {product?.price?.newPrice?.toFixed(2)}
-          </strong>
-          <span className="old-price">
-            $ {product?.price?.oldPrice?.toFixed(2)}
-          </span>
+          <strong className="new-price">$ {discountedPrice.toFixed(2)}</strong>
+          <span className="old-price">$ {originalPrice.toFixed(2)}</span>
         </div>
-        <span className="product-discount">- {product?.discount}%</span>
+        <span className="product-discount">- {discountPercentage}%</span>
         <div className="product-links">
           <button
             className="add-to-cart"
             disabled={filteredCart}
-            onClick={() => addToCart(product)}
+            onClick={() =>
+              addToCart({
+                ...product,
+                price: discountedPrice,
+              })
+            }
           >
             <i className="bi bi-basket-fill"></i>
           </button>
           <button>
             <i className="bi bi-heart-fill"></i>
           </button>
-          <Link to={`product/${product.id}`} className="product-link">
+          <Link to={`product/${product._id}`} className="product-link">
             <i className="bi bi-eye-fill"></i>
           </Link>
           <a href="#">

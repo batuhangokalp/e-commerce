@@ -19,7 +19,7 @@ const CartTable = () => {
         {cartItems.length > 0 &&
           cartItems.map((cartItem) => (
             <CartItem
-              key={cartItem.id}
+              key={cartItem._id}
               cartItem={cartItem}
               removeFromCart={removeFromCart}
             />

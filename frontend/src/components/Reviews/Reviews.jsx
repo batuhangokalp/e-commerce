@@ -2,17 +2,24 @@ import ReviewForm from "./ReviewForm";
 import ReviewItem from "./ReviewItem";
 import PropTypes from "prop-types";
 import "./Reviews.css";
-const Reviews = ({ active }) => {
+const Reviews = ({ active, productData }) => {
   return (
     <div className={`tab-panel-reviews ${active}`}>
-      <h3>2 reviews for Basic Colored Sweatpants With Elastic Hems</h3>
-      <div className="comments">
-        <ol className="comment-list">
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-        </ol>
-      </div>
+      {productData?.reviews?.length > 0 ? (
+        <>
+          <h3>2 reviews for Basic Colored Sweatpants With Elastic Hems</h3>
+          <div className="comments">
+            <ol className="comment-list">
+              {productData?.reviews?.map((review, index) => (
+                <ReviewItem key={index} review={review} />
+              ))}
+            </ol>
+          </div>
+        </>
+      ) : (
+        <h2>Henüz yorum yok!</h2>
+      )}
+
       <div className="review-form-wrapper">
         <h2>Add a review</h2>
         <ReviewForm />
@@ -23,5 +30,6 @@ const Reviews = ({ active }) => {
 export default Reviews;
 
 Reviews.propTypes = {
-  active: PropTypes.string
-}
+  active: PropTypes.string,
+  productData: PropTypes.object,
+};

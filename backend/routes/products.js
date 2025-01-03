@@ -5,14 +5,13 @@ const Product = require("../models/Product.js");
 // #region Creating product
 router.post("/", async (req, res) => {
   try {
-    const product = req.body;
-    const newProduct = new Product(product);
+    const newProduct = new Product(req.body);
     await newProduct.save();
 
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
-    return res.status(401).json({ error });
+    res.status(500).json({ error: "Server error." });
   }
 });
 // #endregion

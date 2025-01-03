@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
-import productsData from "../../data.json";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import "./Products.css";
 const Products = () => {
-  const [products] = useState(productsData);
+  const [productData, setProductData] = useState([]);
+
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
+  // #region Get categories
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${API_URL}api/products`);
+        if (response.ok) {
+          const data = await response.json();
+          setProductData(data);
+        } else {
+          console.log("Ürünler getirilemedi!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCategories();
+  }, [API_URL]);
+  // #endregion
 
   const NextBtn = ({ onClick }) => (
     <button className="glide__arrow glide__arrow--right" onClick={onClick}>
@@ -61,8 +81,8 @@ const Products = () => {
         <div className="product-wrapper product-carousel">
           <div className="glide__track">
             <Slider {...sliderSettings}>
-              {products.map((product) => (
-                <ProductItem product={product} key={product.id} />
+              {productData.map((product) => (
+                <ProductItem key={product._id} product={product} />
               ))}
             </Slider>
           </div>

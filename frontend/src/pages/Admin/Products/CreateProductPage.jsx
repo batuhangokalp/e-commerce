@@ -51,6 +51,7 @@ const CreateProductPage = () => {
     const sizes = createSplitValues(values.sizes);
     setLoading(true);
     try {
+      console.log("trya girdi")
       const response = await fetch(`${API_URL}api/products`, {
         method: "POST",
         headers: {
