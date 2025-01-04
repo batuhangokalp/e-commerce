@@ -25,6 +25,13 @@ const ProductDetailsPage = () => {
     };
     fetchProductForId();
   }, [API_URL, productId]);
-  return productData && <ProductDetails productData={productData} />;
+  return (
+    productData && (
+      <ProductDetails
+        productData={productData}
+        setProductData={setProductData}
+      />
+    )
+  );
 };
 export default ProductDetailsPage;

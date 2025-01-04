@@ -1,6 +1,58 @@
-const ReviewForm = () => {
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { message } from "antd";
+
+const ReviewForm = ({ productData, setProductData }) => {
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+  const productId = productData?._id;
+
+  const storedAuth = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+
+  const handleRatingChange = (e, newRating) => {
+    e.preventDefault();
+    setRating(newRating);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = {
+      reviews: [
+        ...productData.reviews,
+        {
+          text: review,
+          rating: parseInt(rating),
+          user: storedAuth._id,
+        },
+      ],
+    };
+
+    try {
+      const response = await fetch(`${API_URL}api/products/${productId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        message.error("Yorum eklenirken bir hata oluştu!");
+      }
+      const data = await response.json();
+      setProductData(data);
+      message.success("Yorumun başarıyla eklendi!");
+      setReview("");
+      setRating(0);
+    } catch (error) {
+      console.log("Kategori güncelleme hatası:", error);
+    }
+  };
   return (
-    <form className="comment-form">
+    <form className="comment-form" onSubmit={handleSubmit}>
       <p className="comment-notes">
         Your email address will not be published. Required fields are marked
         <span className="required">*</span>
@@ -11,25 +63,45 @@ const ReviewForm = () => {
           <span className="required">*</span>
         </label>
         <div className="stars">
-          <a href="#" className="star">
+          <a
+            href="#"
+            className={`star ${rating === 1 && "active"}`}
+            onClick={(e) => handleRatingChange(e, 1)}
+          >
             <i className="bi bi-star-fill"></i>
           </a>
-          <a href="#" className="star">
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-          </a>
-          <a href="#" className="star">
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-          </a>
-          <a href="#" className="star">
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
+          <a
+            href="#"
+            className={`star ${rating === 2 && "active"}`}
+            onClick={(e) => handleRatingChange(e, 2)}
+          >
             <i className="bi bi-star-fill"></i>
             <i className="bi bi-star-fill"></i>
           </a>
-          <a href="#" className="star">
+          <a
+            href="#"
+            className={`star ${rating === 3 && "active"}`}
+            onClick={(e) => handleRatingChange(e, 3)}
+          >
+            <i className="bi bi-star-fill"></i>
+            <i className="bi bi-star-fill"></i>
+            <i className="bi bi-star-fill"></i>
+          </a>
+          <a
+            href="#"
+            className={`star ${rating === 4 && "active"}`}
+            onClick={(e) => handleRatingChange(e, 4)}
+          >
+            <i className="bi bi-star-fill"></i>
+            <i className="bi bi-star-fill"></i>
+            <i className="bi bi-star-fill"></i>
+            <i className="bi bi-star-fill"></i>
+          </a>
+          <a
+            href="#"
+            className={`star ${rating === 5 && "active"}`}
+            onClick={(e) => handleRatingChange(e, 5)}
+          >
             <i className="bi bi-star-fill"></i>
             <i className="bi bi-star-fill"></i>
             <i className="bi bi-star-fill"></i>
@@ -43,22 +115,15 @@ const ReviewForm = () => {
           Your review
           <span className="required">*</span>
         </label>
-        <textarea id="comment" cols="50" rows="10"></textarea>
+        <textarea
+          id="comment"
+          cols="50"
+          rows="10"
+          onChange={(e) => setReview(e.target.value)}
+          value={review}
+        ></textarea>
       </div>
-      <div className="comment-form-author form-comment">
-        <label htmlFor="name">
-          Name
-          <span className="required">*</span>
-        </label>
-        <input id="name" type="text" />
-      </div>
-      <div className="comment-form-email form-comment">
-        <label htmlFor="email">
-          Email
-          <span className="required">*</span>
-        </label>
-        <input id="email" type="email" />
-      </div>
+
       <div className="comment-form-cookies">
         <input id="cookies" type="checkbox" />
         <label htmlFor="cookies">
@@ -74,3 +139,8 @@ const ReviewForm = () => {
   );
 };
 export default ReviewForm;
+
+ReviewForm.propTypes = {
+  productData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  setProductData: PropTypes.func,
+};

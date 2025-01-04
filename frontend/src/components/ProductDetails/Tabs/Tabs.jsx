@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Reviews from "../../Reviews/Reviews";
 import "./Tabs.css";
-const Tabs = ({ productData }) => {
+const Tabs = ({ productData, setProductData }) => {
   const [activeTab, setActiveTab] = useState("desc");
   const handleTabClick = (e, tab) => {
     e.preventDefault();
@@ -85,6 +85,7 @@ const Tabs = ({ productData }) => {
         <Reviews
           productData={productData}
           active={activeTab === "reviews" ? "content active" : "content"}
+          setProductData={setProductData}
         />
       </div>
     </div>
@@ -94,4 +95,5 @@ export default Tabs;
 
 Tabs.propTypes = {
   productData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  setProductData: PropTypes.func,
 };
