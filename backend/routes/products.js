@@ -85,4 +85,20 @@ router.delete("/:productId", async (req, res) => {
 });
 // #endregion
 
+// #region Searching product according to name
+router.get("/search/:productName", async (req, res) => {
+  try {
+    const productName = req.params.productName;
+    const products = await Product.find({
+      name: { $regex: productName, $options: "i" },
+    });
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Server error!" });
+  }
+});
+// #endregion
+
 module.exports = router;
