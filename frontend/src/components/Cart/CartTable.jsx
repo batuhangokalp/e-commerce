@@ -21,7 +21,7 @@ const CartTable = () => {
             <CartItem
               key={cartItem._id}
               cartItem={cartItem}
-              removeFromCart={removeFromCart}
+              removeFromCart={()=>removeFromCart(cartItem?._id)}
             />
           ))}
       </tbody>
