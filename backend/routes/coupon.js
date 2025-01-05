@@ -57,6 +57,7 @@ router.get("/code/:couponCode", async (req, res) => {
     if (!coupon) {
       return res.status(404).json({ error: "Coupon not found!" });
     }
+    const { discountPercent } = coupon;
     res.status(200).json({ discountPercent });
   } catch (error) {
     res.status(500).json({ error: "Server error!" });
