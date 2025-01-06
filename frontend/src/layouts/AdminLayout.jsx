@@ -82,12 +82,36 @@ const AdminLayout = ({ children }) => {
     },
     {
       key: "8",
+      icon: <LaptopOutlined />,
+      label: "Bloglar",
+      path: "/",
+      children: [
+        {
+          key: "9",
+          label: "Blog Listesi",
+          path: "/admin/blogs",
+          onClick: () => {
+            navigate(`/admin/blogs`);
+          },
+        },
+        {
+          key: "10",
+          label: "Yeni Blog Oluştur",
+          path: "/admin/blogs/create",
+          onClick: () => {
+            navigate("/admin/blogs/create");
+          },
+        },
+      ],
+    },
+    {
+      key: "11",
       icon: <BarcodeOutlined />,
       label: "Kuponlar",
       path: "/admin/coupons",
       children: [
         {
-          key: "9",
+          key: "12",
           label: "Kupon Listesi",
           path: "/admin/coupons",
           onClick: () => {
@@ -95,7 +119,7 @@ const AdminLayout = ({ children }) => {
           },
         },
         {
-          key: "10",
+          key: "13",
           label: "Yeni Kupon Oluştur",
           path: "/admin/coupons/create",
           onClick: () => {
@@ -105,7 +129,7 @@ const AdminLayout = ({ children }) => {
       ],
     },
     {
-      key: "11",
+      key: "14",
       icon: <UserOutlined />,
       label: "Kullanıcı Listesi",
       path: "/admin/users",
@@ -114,7 +138,7 @@ const AdminLayout = ({ children }) => {
       },
     },
     {
-      key: "12",
+      key: "15",
       icon: <ShoppingCartOutlined />,
       label: "Siparişler",
       path: "/admin/orders",
@@ -123,7 +147,7 @@ const AdminLayout = ({ children }) => {
       },
     },
     {
-      key: "13",
+      key: "16",
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {

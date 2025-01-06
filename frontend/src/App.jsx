@@ -20,6 +20,9 @@ import CreateCouponPage from "./pages/Admin/Coupons/CreateCouponPage";
 import UpdateCouponPage from "./pages/Admin/Coupons/UpdateCouponPage";
 import OrderPage from "./pages/Admin/OrderPAge";
 import DashboardPage from "./pages/Admin/DashboardPage";
+import BlogsPage from "./pages/Admin/Blogs/BlogsPage";
+import CreateBlogPage from "./pages/Admin/Blogs/CreateBlogPage";
+import UpdateBlogPage from "./pages/Admin/Blogs/UpdateCategoryPage";
 import "./App.css";
 
 function App() {
@@ -47,6 +50,9 @@ function App() {
         <Route path="coupons/create" element={<CreateCouponPage />} />
         <Route path="coupons/update/:id" element={<UpdateCouponPage />} />
         <Route path="orders" element={<OrderPage />} />
+        <Route path="blogs" element={<BlogsPage />} />
+        <Route path="blogs/create" element={<CreateBlogPage />} />
+        <Route path="blogs/update/:id" element={<UpdateBlogPage />} />
       </Route>
     </Routes>
   );
