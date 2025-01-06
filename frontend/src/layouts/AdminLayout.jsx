@@ -1,6 +1,5 @@
 import { Layout, Menu } from "antd";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import {
   UserOutlined,
   LaptopOutlined,
@@ -10,6 +9,8 @@ import {
   ShoppingCartOutlined,
   AppstoreOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+
 const { Sider, Header, Content } = Layout;
 
 const getUserRole = () => {
@@ -26,6 +27,7 @@ const AdminLayout = ({ children }) => {
       key: "1",
       icon: <DashboardOutlined />,
       label: "Dashboard",
+      path: "/admin",
       onClick: () => {
         navigate(`/admin`);
       },
@@ -115,6 +117,7 @@ const AdminLayout = ({ children }) => {
       key: "12",
       icon: <ShoppingCartOutlined />,
       label: "Siparişler",
+      path: "/admin/orders",
       onClick: () => {
         navigate(`/admin/orders`);
       },
@@ -128,6 +131,38 @@ const AdminLayout = ({ children }) => {
       },
     },
   ];
+
+  const getActiveKey = () => {
+    for (const item of menuItems) {
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === window.location.pathname) {
+            return child.key;
+          }
+        }
+      } else {
+        if (item.path === window.location.pathname) {
+          return item.key;
+        }
+      }
+    }
+  };
+
+  const getPageTitle = () => {
+    for (const item of menuItems) {
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === window.location.pathname) {
+            return child.label;
+          }
+        }
+      } else {
+        if (item.path === window.location.pathname) {
+          return item.label;
+        }
+      }
+    }
+  };
 
   if (userRole === "admin") {
     return (
@@ -144,6 +179,7 @@ const AdminLayout = ({ children }) => {
                 height: "100%",
               }}
               items={menuItems}
+              defaultSelectedKeys={[getActiveKey()]}
             />
           </Sider>
           <Layout>
@@ -155,6 +191,7 @@ const AdminLayout = ({ children }) => {
                   color: "white",
                 }}
               >
+                <h2>{getPageTitle()}</h2>
                 <h2>Admin Paneli</h2>
               </div>
             </Header>
@@ -174,9 +211,10 @@ const AdminLayout = ({ children }) => {
       </div>
     );
   } else {
-    return (window.location = "/");
+    return (window.location.href = "/");
   }
 };
+
 export default AdminLayout;
 
 AdminLayout.propTypes = {

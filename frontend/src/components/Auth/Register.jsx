@@ -55,6 +55,7 @@ const Register = () => {
               type="text"
               name="username"
               onChange={handleInputChange}
+              required
             />
           </label>
         </div>
@@ -68,6 +69,7 @@ const Register = () => {
               type="email"
               name="email"
               onChange={handleInputChange}
+              required
             />
           </label>
         </div>
@@ -81,6 +83,7 @@ const Register = () => {
               type="password"
               name="password"
               onChange={handleInputChange}
+              required
             />
           </label>
         </div>

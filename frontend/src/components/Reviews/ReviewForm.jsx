@@ -20,6 +20,9 @@ const ReviewForm = ({ productData, setProductData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (rating === 0) {
+      return message.error("Puan seçiniz!");
+    }
     const formData = {
       reviews: [
         ...productData.reviews,
@@ -121,6 +124,7 @@ const ReviewForm = ({ productData, setProductData }) => {
           rows="10"
           onChange={(e) => setReview(e.target.value)}
           value={review}
+          required
         ></textarea>
       </div>
 

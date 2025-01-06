@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { message } from "antd";
 import Proptypes from "prop-types";
 import "./Search.css";
@@ -78,7 +79,10 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
             {searchResults?.length > 0 &&
               searchResults?.map((searchResult) => (
                 <div key={searchResult?._id}>
-                  <a href="#" className="result-item">
+                  <Link
+                    to={`product/${searchResult._id}`}
+                    className="result-item"
+                  >
                     <img
                       src={searchResult?.images[0]}
                       className="search-thumb"
@@ -91,7 +95,7 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
                         {searchResult?.price?.currentPrice.toFixed(2)}
                       </span>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               ))}
           </div>

@@ -33,7 +33,7 @@ const CouponPage = () => {
             type="primary"
             onClick={() => navigate(`/admin/coupons/update/${record._id}`)}
           >
-            Düzenle
+            Güncelle
           </Button>
           <Popconfirm
             title="Kuponu Sil"
@@ -43,7 +43,7 @@ const CouponPage = () => {
             onConfirm={() => deleteCoupon(record._id)}
           >
             <Button type="primary" danger>
-              Delete
+              Sil
             </Button>
           </Popconfirm>
         </Space>
