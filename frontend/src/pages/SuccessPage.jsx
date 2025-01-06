@@ -17,9 +17,11 @@ const SuccessPage = () => {
           subTitle="Siparişiniz başarıyla tamamlandı"
           extra={[
             <Link to={"/"} key="home">
-              <Button type="primary">Ana Sayfa</Button>,
+              <Button type="primary">Ana Sayfa</Button>
             </Link>,
-            <Button key="buy">Siparişlerim</Button>,
+            <a href="/admin/orders" key="orders">
+              <Button key="buy">Siparişlerim</Button>
+            </a>,
           ]}
         />
       </div>
