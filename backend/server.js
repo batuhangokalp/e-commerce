@@ -6,7 +6,7 @@ const cors = require("cors");
 
 const app = express();
 const mainRoute = require("./routes/index.js");
-const PORT = 5000;
+const port = process.env.PORT || 5000;
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ app.use(cors());
 
 app.use("/api", mainRoute);
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   connect();
-  console.log(`The server is running ${5000} `);
+  console.log(`The server is running ${port} `);
 });
