@@ -18,7 +18,7 @@ import UpdateProductPage from "./pages/Admin/Products/UpdateProductPage";
 import CouponPage from "./pages/Admin/Coupons/CouponPage";
 import CreateCouponPage from "./pages/Admin/Coupons/CreateCouponPage";
 import UpdateCouponPage from "./pages/Admin/Coupons/UpdateCouponPage";
-import OrderPage from "./pages/Admin/OrderPAge";
+import OrderPage from "./pages/Admin/OrderPage";
 import DashboardPage from "./pages/Admin/DashboardPage";
 import BlogsPage from "./pages/Admin/Blogs/BlogsPage";
 import CreateBlogPage from "./pages/Admin/Blogs/CreateBlogPage";
