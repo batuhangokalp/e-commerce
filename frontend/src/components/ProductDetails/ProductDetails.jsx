@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Breadcrumb from "./Breadcrumb/breadcrumb";
+// import Breadcrumb from "./Breadcrumb/breadcrumb";
 import Gallery from "./Gallery/Gallery";
 import Info from "./Info/Info";
 import Tabs from "./Tabs/Tabs";
@@ -10,7 +10,7 @@ const ProductDetails = ({ productData, setProductData }) => {
     <section className="single-product">
       <div className="container">
         <div className="single-product-wrapper">
-          <Breadcrumb />
+          {/* <Breadcrumb /> */}
           <div className="single-content">
             <main className="site-main">
               <Gallery productData={productData} />
