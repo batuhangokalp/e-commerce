@@ -41,39 +41,7 @@ const Header = ({ setIsSearchShow }) => {
                       className={`menu-link ${pathname === "/" && "active"} `}
                     >
                       Home
-                      <i className="bi bi-chevron-down"></i>
                     </Link>
-                    <div className="menu-dropdown-wrapper">
-                      <ul className="menu-dropdown-content">
-                        <li>
-                          <a href="#">Home Clean</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Collection</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Minimal</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Modern</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Parallax</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Strong</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Style</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Unique</a>
-                        </li>
-                        <li>
-                          <a href="#">Home RTL</a>
-                        </li>
-                      </ul>
-                    </div>
                   </li>
                   <li className="menu-list-item megamenu-wrapper">
                     <Link
