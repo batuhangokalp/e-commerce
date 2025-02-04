@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `${process.env.CLIENT_DOMAIN}/success`,
+      // success_url: `${process.env.CLIENT_DOMAIN}/success`,
     });
     res.status(200).json({ id: session.id });
   } catch (error) {
